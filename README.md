@@ -13,13 +13,13 @@ This repository contains automated tests written using Cypress, a modern end-to-
 1. Clone this repository to your local machine:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Bidemi-Olaide/credpal.git
 ```
 
 2. Navigate into the project directory:
 
 ```bash
-cd <project-directory>
+cd credpal
 ```
 
 3. Install dependencies:

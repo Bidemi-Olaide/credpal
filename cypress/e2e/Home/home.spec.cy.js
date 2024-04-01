@@ -11,7 +11,7 @@ Given(/^I launch the home page$/, () => {
 	Home.visitPage();
 });
 
-Then(/^I should see "([^"]*)"$/, ($text) => {
+Then(/^I should see "([^"]*)" on the page$/, ($text) => {
 	Home.verifyCredPalHeading($text);
 });
 
@@ -20,6 +20,12 @@ Given(/^I launch the home page using wrong path$/, () => {
 	  failOnStatusCode: false,
 	});
   });
+
+  
+Then(/^I should see background image$/, () => {
+	Home.homeBackgroundImage;
+});
+
   
 Then(/^I should see error 404 message$/, () => {
 	cy.get("h1[data-v-5d12fb99]")
@@ -38,6 +44,29 @@ Then(/^I should see a dropdown$/, () => {
 	});
   });
 
+  
+Then(/^I click on see savings and investment$/, () => {
+	Home.verifySavingAndInvestmentLink();
+});
+
+
+Then(/^I should see "([^"]*)" on saving and investment page$/, ($text) => {
+	Home.verifySavingsAndInvestmentHeader($text);
+	
+});
+
+
+Then(/^I click on see credit builder$/, () => {
+	Home.verifyCreditBuilderLink();
+});
+
+Then(/^I should see "([^"]*)" on credit builder page$/, ($text) => {
+	Home.verifyCreditBuilderHeader($text);
+	
+});
+
+
+
 When(/^I click on the business button$/, () => {
 	cy.get(Header.businessLink).click();
   });
@@ -54,17 +83,17 @@ Then(/^I should see "([^"]*)" on FAQ page$/, ($text) => {
 	cy.get(Header.whatPageHeading).should("be.visible").and("contain", $text);
   });
 
-// When(/^I click on affiliate button$/, () => {
-// 	cy.get(Header.affiliateLinkHeader).click();
-//   });
+When(/^I click on affiliate button$/, () => {
+	cy.get(Header.affiliateLinkHeader).click();
+  });
 
-// Then(/^I should see "([^"]*)"$/, ($text) => {
-// 	Home.verifyTheOnboardingForm($text);
-//   });
+Then(/^I should see "([^"]*)" on affiliate page$/, ($text) => {
+	Home.verifyAffiliateHeading($text);
+  });
 
-Then(/^I should see background image is visible$/, () => {
-	Home.verifyBackgroundImage();
-});
+// Then(/^I should see background image is visible$/, () => {
+// 	Home.verifyBackgroundImage();
+// });
 
 
 
@@ -90,7 +119,7 @@ Then(/^I should see virtual image$/, () => {
 
 
 Then(/^I should verify that download button is visible$/, () => {
-	;
+	
 });
 
 

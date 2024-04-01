@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 const webpack = require("@cypress/webpack-preprocessor");
 const {
   addCucumberPreprocessorPlugin,
-} = require("@badeball/cypress-cucumber-preprocessor");
+} = require("@badeball/cypress-cucumber-preprocessor");  
 
 async function setupNodeEvents(on, config) {
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
@@ -38,11 +38,13 @@ async function setupNodeEvents(on, config) {
 module.exports = defineConfig({
   e2e: {
     baseUrl: "http://www.credpal.com",
-    defaultCommandTimeout: 300000,
+    defaultCommandTimeout: 200000,
     viewportHeight: 900,
     viewportWidth: 1400,
     chromeWebSecurity: false,
     specPattern: "**/*.feature",
+    "video": true,
+  "videosFolder": "cypress/videos",
     supportFile: "cypress/support/e2e.js",
     
     setupNodeEvents,

@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import Affiliate from "../../pageObjects/Affiliate";
+import Affiliate from "../../PageObjects/Affiliate";
 import Header from "../../PageObjects/Header";
 
 Given(/^I launch the affiliate page$/, () => {

@@ -1,6 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import Affiliate from "../../PageObjects/Affiliate";
-import Header from "../../PageObjects/Header";
+import Affiliate from "../../pageObjects/Affiliate";
+import Header from "../../pageObjects/Header";
 
 Given(/^I launch the affiliate page$/, () => {
   Affiliate.visitPage();
@@ -11,60 +11,52 @@ Then(/^I should see "([^"]*)"$/, ($text) => {
 });
 
 Given(/^I launch the affiliate page using wrong path$/, () => {
-  cy.visit("/sale", {
-    failOnStatusCode: false,
-  });
+  Affiliate.visitWrongPage();
 });
 
 Then(/^I should see error 404 message$/, () => {
-  cy.get("h1[data-v-5d12fb99]")
-    .should("have.length", 1)
-    .and("have.text", "404");
+  Affiliate.page404();
 });
 
 Then(/^Credpal logo should be visible on the header$/, () => {
-  cy.get(Header.credLink).should("be.visible");
+  Header.verifyCredPalLogo();
 });
 
 When(/^I click on product dropdown on the page header$/, () => {
-  cy.get(Header.productLink).click();
+  Header.openProductDropdown();
 });
 
 Then(/^I should see a dropdown$/, () => {
-  cy.get(Header.dropDown).should("not.have.class", "opacity-0");
-  cy.get(Header.dropDownItems).each(($item) => {
-    cy.wrap($item).should("be.visible");
-  });
+  Header.verifyProductDropdown();
+  Header.verifyProductDropdownItems();
 });
 
 When(/^I click on the business button$/, () => {
-  cy.get(Header.businessLink).click();
+  Header.clickBusinessButton();
 });
 
 Then(/^I should see "([^"]*)" on business page$/, ($text) => {
-  cy.get(Header.businessPageHeading).should("be.visible").and("contain", $text);
+  Header.verifyBusinessPage($text);
 });
 
 When(/^I click on what we do button$/, () => {
-  cy.get(Header.whatLink).click();
+  Header.clickWhatWeDoButton();
 });
 
 Then(/^I should see "([^"]*)" on FAQ page$/, ($text) => {
-  cy.get(Header.whatPageHeading).should("be.visible").and("contain", $text);
+  Header.verifyFAQPage($text);
 });
 
 When(/^I click on affiliate button$/, () => {
-  cy.get(Header.affiliateLinkHeader).click();
+  Header.clickAffiliateButton();
 });
 
 When(/^I click on switch nationality dropdown$/, () => {
-  cy.get(Header.switchLink).click({ force: true });
+  Header.clickNationalityButton();
 });
 
 When(/^I select a country different from the default$/, () => {
-  cy.get(Header.languagePopup)
-    .should("not.have.class", "opacity-0")
-    .should("not.have.class", "invisible");
+  Header.verifyNationalityPopup();
   Header.switchCountryToEgypt();
 });
 

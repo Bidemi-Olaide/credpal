@@ -7,38 +7,19 @@ Feature: Test to verify home page
 
     Scenario: A test to verify home page
         Given I launch the home page
-        Then I should see "One App, all your Financial Needs" on the page
-
-    Scenario: A test to verify background image
-        Given I launch the home page
-        Then  I should see background image
+        Then I should see "One App, all your Financial Needs"
 
     Scenario: A test to verify invalid home url
         Given I launch the home page using wrong path
         Then  I should see error 404 message
 
-    # Scenario: A test to check the product dropdown on the header is clickable or works
-    #     Given I launch the home page
-    #     When  I click on product dropdown on the page header
-    #     Then  I should see a dropdown
 
+    # header section
 
-    # Scenario: A test to check the savings and investment header is clickable or works
-    #     Given I launch the home page
-    #     When  I click on product dropdown on the page header
-    #     Then  I click on see savings and investment
-    #     Then  I should see "Take control of your finances with CredPal savings." on saving and investment page
-
-    # Scenario: A test to check the credit builder header is clickable or works
-    #     Given I launch the home page
-    #     When  I click on product dropdown on the page header
-    #     Then  I click on see credit builder
-    #     Then  I should see "Build your credit score with CredPal Credit Builder" on credit builder page
-
-    # Scenario: A test to check the product dropdown on the header is clickable or works
-    #     Given I launch the home page
-    #     When  I click on product dropdown on the page header
-    #     Then  I should see a dropdown
+    Scenario: A test to check the product dropdown on the header is clickable or works
+        Given I launch the home page
+        When  I click on product dropdown on the page header
+        Then  I should see a dropdown
 
     Scenario: A test to check the business button on the header is clickable and redirect to the right page
         Given I launch the home page
@@ -49,14 +30,30 @@ Feature: Test to verify home page
         Given I launch the home page
         When  I click on what we do button
         Then  I should see "Frequently asked questions" on FAQ page
-    
+
     Scenario: A test to check the affiliate button on the header is clickable and redirect to the right page
         Given I launch the home page
         When  I click on affiliate button
         Then  I should see "Affiliate Onboarding Form" on affiliate page
 
+    Scenario: A test to succesfully switch nationality or change language
+        Given I launch the home page
+        When  I click on switch nationality dropdown
+        And   I select a country different from the default
+        Then  What We Do should be translated to "ما نحن داو" on the page
 
-     Scenario: A test to verify payment image
+    Scenario: A test to verify download button
+        Given I launch the home page
+        When  I click on the download button
+        Then I should see a modal or popup with qr code
+
+    # end header section
+
+    Scenario: A test to verify background image
+        Given I launch the home page
+        Then  I should see background image is visible
+
+    Scenario: A test to verify payment image
         Given I launch the home page
         Then  I should see payment image with sneakers picture
 
@@ -64,10 +61,9 @@ Feature: Test to verify home page
         Given I launch the home page
         Then  I should see savings image with savings icon
 
-     Scenario: A test to verify virtual image
+    Scenario: A test to verify virtual image
         Given I launch the home page
-        Then  I should see virtual image 
-        Then I should verify that download button is visible
+        Then  I should see virtual image
 
     Scenario: A test to verify credit build image
         Given I launch the home page
@@ -80,7 +76,8 @@ Feature: Test to verify home page
     Scenario: A test to verify length of page reviews
         Given I launch the home page
         Then  I should the number of reviews is visible
-     Scenario: A test that customer terms is clickable
+
+    Scenario: A test that customer terms is clickable
         Given I launch the home page
         When I click on customer terms
         Then I should see the customer header "CUSTOMER TERMS OF USE"
@@ -100,3 +97,7 @@ Feature: Test to verify home page
         Given I launch the home page
         When I click on blog notice
         Then I should see the blog header logo
+
+    Scenario: A test to verify download button is visible
+        Given I launch the home page
+        Then  I should be able to see the download button

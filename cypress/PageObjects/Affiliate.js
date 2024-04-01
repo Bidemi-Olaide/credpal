@@ -17,6 +17,18 @@ class Affiliate {
     cy.visit("/sales");
   }
 
+  static visitWrongPage() {
+    cy.visit("/sale", {
+      failOnStatusCode: false,
+    });
+  }
+
+  static page404() {
+    cy.get("h1[data-v-5d12fb99]")
+      .should("have.length", 1)
+      .and("have.text", "404");
+  }
+
   static verifyOnboardingForm($text) {
     cy.get(this.formHeaderText).should("be.visible").should("have.text", $text);
   }
@@ -58,9 +70,7 @@ class Affiliate {
   }
 
   static setCheckbox() {
-    cy.get(this.checkbox)
-      .find("label:first-child")
-      .click();
+    cy.get(this.checkbox).find("label:first-child").click();
   }
 }
 

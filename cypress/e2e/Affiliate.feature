@@ -18,10 +18,10 @@ Feature: Test to verify affiliate page
         Given I launch the affiliate page using wrong path
         Then  I should see error 404 message
 
-    # Scenario: A test to check the product dropdown on the header is clickable or works
-    #     Given I launch the affiliate page
-    #     When  I click on product dropdown on the page header
-    #     Then  I should see a dropdown
+    Scenario: A test to check the product dropdown on the header is clickable or works
+        Given I launch the affiliate page
+        When  I click on product dropdown on the page header
+        Then  I should see a dropdown
 
     Scenario: A test to check the business button on the header is clickable and redirect to the right page
         Given I launch the affiliate page
@@ -39,17 +39,17 @@ Feature: Test to verify affiliate page
         When  I click on affiliate button
         Then  I should see "Affiliate Onboarding Form"
 
-    # Scenario: A test to succesfully switch nationality or change language
-    #     Given I launch the affiliate page
-    #     When  I click on switch nationality dropdown
-    #     And   I select a country different from the default
-    #     Then  What We Do should be translated to "ما نحن داو" on the page
+    Scenario: A test to succesfully switch nationality or change language
+        Given I launch the affiliate page
+        When  I click on switch nationality dropdown
+        And   I select a country different from the default
+        Then  What We Do should be translated to "ما نحن داو" on the page
 
 
-    # Scenario: A test to verify download button
-    #     Given I launch the affiliate page
-    #     When  I click on the download button
-    #     Then I should see a modal or popup with qr code
+    Scenario: A test to verify download button
+        Given I launch the affiliate page
+        When  I click on the download button
+        Then I should see a modal or popup with qr code
 
 
     Scenario: A user try to submit without filling the form

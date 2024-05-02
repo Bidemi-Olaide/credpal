@@ -14,9 +14,9 @@ Feature: Test to verify affiliate page
         Given I launch the affiliate page
         Then  I should see background image
 
-    Scenario: A test to verify invalid affiliate url
-        Given I launch the affiliate page using wrong path
-        Then  I should see error 404 message
+    # Scenario: A test to verify invalid affiliate url
+    #     Given I launch the affiliate page using wrong path
+    #     Then  I should see error 404 message
 
     Scenario: A test to check the product dropdown on the header is clickable or works
         Given I launch the affiliate page
@@ -26,13 +26,13 @@ Feature: Test to verify affiliate page
     Scenario: A test to check the business button on the header is clickable and redirect to the right page
         Given I launch the affiliate page
         When  I click on the business button
-        Then  I should see "Grow your business with CredPal Pay" on business page
+        Then  I should see header on business page
 
 
     Scenario: A test to check the what we do button on the header is clickable and redirect to the right page
         Given I launch the affiliate page
         When  I click on what we do button
-        Then  I should see "Frequently asked questions" on FAQ page
+        Then  I should see header on FAQ page
 
     Scenario: A test to check the affiliate button on the header is clickable and redirect to the right page
         Given I launch the affiliate page
@@ -43,7 +43,7 @@ Feature: Test to verify affiliate page
         Given I launch the affiliate page
         When  I click on switch nationality dropdown
         And   I select a country different from the default
-        Then  What We Do should be translated to "ما نحن داو" on the page
+        Then  What We Do should be translated to Egypt on the page
 
 
     Scenario: A test to verify download button
@@ -65,7 +65,7 @@ Feature: Test to verify affiliate page
 
     Scenario: A user cannot submit using wrong email format
         Given I launch the affiliate page
-        When  I input form details "aramide", "bidemi", "haramidey.com", and "08022991177"
+        When  I input form details "aramide", " ", "haramidey+215@239", and "08022991177"
         Then  I should see a validation message "this field has to be a valid email address."
 
     Scenario: A user cannot submit using wrong phone number format

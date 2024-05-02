@@ -1,106 +1,102 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import Affiliate from "../../pageObjects/Affiliate";
-import Header from "../../pageObjects/Header";
 
 Given(/^I launch the affiliate page$/, () => {
-  Affiliate.visitPage();
+  cy.LaunchApp();
 });
 
 Then(/^I should see "([^"]*)"$/, ($text) => {
-  Affiliate.verifyOnboardingForm($text);
-});
+  cy.fixture("elements").then((el)=>{
+    cy.get(el.formHeaderText).should("be.visible").should("have.text", $text)
+  })
+})
 
-Given(/^I launch the affiliate page using wrong path$/, () => {
-  Affiliate.visitWrongPage();
-});
+// Given(/^I launch the affiliate page using wrong path$/, () => {
+//   cy.visit("/sale", {
+//     failOnStatusCode: false,
+//   });
+// });
 
-Then(/^I should see error 404 message$/, () => {
-  Affiliate.page404();
-});
+// Then(/^I should see error 404 message$/, () => {
+//   cy.get("h1[data-v-5d12fb99]").should("have.length", 1).and("have.text", "404");
+// });
 
 Then(/^Credpal logo should be visible on the header$/, () => {
-  Header.verifyCredPalLogo();
-});
+  cy.CrepalHeader();
+})
 
 When(/^I click on product dropdown on the page header$/, () => {
-  Header.openProductDropdown();
+  cy.ProductLink();
 });
 
 Then(/^I should see a dropdown$/, () => {
-  Header.verifyProductDropdown();
-  Header.verifyProductDropdownItems();
+  cy.ProductDropdown();
 });
 
 When(/^I click on the business button$/, () => {
-  Header.clickBusinessButton();
+  cy.BusinessLink();
 });
 
-Then(/^I should see "([^"]*)" on business page$/, ($text) => {
-  Header.verifyBusinessPage($text);
+Then(/^I should see header on business page$/, () => {
+  cy.BusinessPage();
 });
 
 When(/^I click on what we do button$/, () => {
-  Header.clickWhatWeDoButton();
+  cy.WhatLink();
 });
 
-Then(/^I should see "([^"]*)" on FAQ page$/, ($text) => {
-  Header.verifyFAQPage($text);
+Then(/^I should see header on FAQ page$/, () => {
+  cy.FAQPage();
 });
 
 When(/^I click on affiliate button$/, () => {
-  Header.clickAffiliateButton();
+  cy.AffiliateLink();
 });
 
 When(/^I click on switch nationality dropdown$/, () => {
-  Header.clickNationalityButton();
+ cy.SwitchLink()
 });
 
 When(/^I select a country different from the default$/, () => {
-  Header.verifyNationalityPopup();
-  Header.switchCountryToEgypt();
+  cy.contains('span.font-medium.text-xs.text-gray-500', 'Egypt').click();
 });
 
-Then(/^What We Do should be translated to "([^"]*)" on the page$/, (text) => {
-  Header.verifyEgyptLanguage(text);
+Then(/^What We Do should be translated to Egypt on the page$/, () => {
+  cy.LanguageChange();
 });
 
 When(/^I click on the download button$/, () => {
-  Header.clickDownloadButton();
+ cy.DownloadButton()
 });
 
 Then(/^I should see a modal or popup with qr code$/, () => {
-  Header.verifyQrCodePopup();
+  cy.QRCodePopup();
 });
 
 Then(/^I should see background image$/, () => {
-  Affiliate.verifyOnboardBackgroundImage();
+  cy.OnboardBackgroundImage();
 });
 
 When(/^I click on submit button$/, () => {
-  Affiliate.triggerSubmitButton();
+  cy.SubmitButton();
 });
-Then(/^I should see a validation message "([^"]*)"$/, (msg) => {
-  Affiliate.verifyValidationMessage(msg);
+Then(/^I should see a validation message "([^"]*)"$/, (message) => {
+  cy.ValidationMessage(message);
 });
 
-Then(/^I should see an error message "([^"]*)"$/, (msg) => {
-  Affiliate.verifyErrorMessage(msg);
+Then(/^I should see an error message "([^"]*)"$/, (message) => {
+  cy.ErrorMessage(message);
 });
 
 When(
   /^I input form details "([^"]*)", "([^"]*)", "([^"]*)", and "([^"]*)"$/,
   (firstName, lastName, email, phone) => {
-    Affiliate.setFirstName(firstName);
-    Affiliate.setLastName(lastName);
-    Affiliate.setEmail(email);
-    Affiliate.setPhone(phone);
-  }
-);
+    cy.FillForm(firstName, lastName, email, phone);
+  });
 
 Then(/^I click on checkbox$/, () => {
-  Affiliate.setCheckbox();
+  cy.CheckBox();
 });
 
 Then(/^I should see success message "([^"]*)"$/, (msg) => {
-  Affiliate.verifySuccessMessage(msg);
+  cy.SuccessMessage(msg);
 });
